@@ -1,12 +1,13 @@
 import time
+import mraa
 
-files = ['heartrate.txt', 'tilt.txt']
+files = ['heartrate.txt', 'tilt.txt','light.txt']
 
+## API to return average heartrate reading 
 def read_heartrate():
     values = []
     f = open(files[0], "r+").read().splitlines()
     for lines in f:
-        print lines
         values.append(int(round(float(lines.strip()))))
 
     avg_val =  sum(values[-15:])/15
@@ -15,6 +16,7 @@ def read_heartrate():
     else:
         return 0
 
+## API to return tilt sensor reading 
 def read_tilt():
     values = []
     f = open(files[1], "r+").read().splitlines()
@@ -23,18 +25,33 @@ def read_tilt():
 
     return values[-1:]
 
+## API to return ambient sensor reading
 def read_light():
     values = []
-    f = open(files[1], "r+").read().splitlines()
+    f = open(files[2], "r+").read().splitlines()
     for lines in f:
         values.append(int(lines.strip()))
 
     return values[-1:]
+
+## API to blink LED in case of danger 
+def led():
+    a = mraa.Gpio(29)
+    a.dir(mraa.DIR_OUT)
+    for i in range(10):
+        a.write(1)
+        time.sleep(0.1)
+        a.write(0)
+        time.sleep(0.1)
 
 
 if __name__=='__main__':
     while True:
         h = read_heartrate()
         t = read_tilt()
-        print(str(h) + "--" + str(t))
+        l = read_light()
+        print t
+        if t[0] == 1 or h == 1 or l[0] == 1:
+            led()
+        print(str(h) + "--" + str(t) + "--" + str(l))
         time.sleep(1)

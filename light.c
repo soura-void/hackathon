@@ -66,7 +66,7 @@ int main()
 
 		f = fopen("light.txt","a");
 		value = (adc_value*5.0/1023)*100;
-		if (value > LIGHT_THRESHOLD)
+		if (value < LIGHT_THRESHOLD)
 			fprintf(f, "%d\n", 1);
 		else
 			fprintf(f, "%d\n", 0);
