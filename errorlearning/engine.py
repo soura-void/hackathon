@@ -1,4 +1,5 @@
 import time
+import read_file
 from threading import Thread
 from emailAttachment import sendemail 
 
@@ -94,7 +95,7 @@ cntx1 = cnty1 = cntz1 = cntw1 = 0
 
 class checkformishap(Thread):
     def run(self):
-        raisealarm()
+        #raisealarm()
         while 1 :
             time.sleep(12.5)
             cntx0 = sum(n == 0 for n in x) #x is image
@@ -102,7 +103,6 @@ class checkformishap(Thread):
             cntz0 = sum(n == 0 for n in z) #z is ldr
             cntw0 = sum(n == 0 for n in w) #w is heartbeat
 
-            print(cntx0,cnty0,cntz0, cntw0)
             val = checkformishapfinal(cntx0, cnty0, cntz0, cntw0)
             if (val) :
                 raisealarm()
@@ -115,6 +115,7 @@ def checkformishapfinal(x0,y0,z0,w0) :
     z1 = 10 - z0
     w1 = 10 - w0
 
+    print(x1,y1,z1,w1)
     if z1 > 7 and w1 > 7 and y1 > 7 :
         return 1
     if x1 > 6 : #giving priority to image [separate to sensors module, this can be preventive]
@@ -122,7 +123,8 @@ def checkformishapfinal(x0,y0,z0,w0) :
     return 0
 
 def raisealarm() :
-    sendemail("17.4405884,78.3786465")   
+    sendemail("17.4405884,78.3786465")
+    read_file.led_glow()
 #integrate map, alarm, and buzzer here 
 
 
@@ -133,13 +135,13 @@ def getvalfromimagefile() :
     return 0
 
 def getvalfromtiltsensor() :
-    return 0
+    return read_file.read_tilt()
 
 def getvalfromldrsensor() :
-    return 1
+    return read_file.read_light()
 
 def getvalfromheartbeatsensor() :
-    return 1
+    return read_file.read_heartrate()
 
 def run():
     compute().start()
