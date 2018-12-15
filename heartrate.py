@@ -12,7 +12,6 @@ class Counter:
     current_time = 0
 
 c = Counter()
-f = open("heartrate.txt", "w+")
 
 def isr(gpio):
     c.current_time = timer()
@@ -25,7 +24,9 @@ def isr(gpio):
     c.heart_rate = 60/c.temp
     c.elapsed_time = timer()
     print("Heart Rate: " + str(c.heart_rate))
+    f = open("heartrate.txt", "a+")
     f.write(str(c.heart_rate) + "\n")
+    f.close()
 
 try:
     x = mraa.Gpio(23)

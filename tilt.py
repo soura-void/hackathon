@@ -7,7 +7,6 @@ class Counter:
     count = 0
     start = 0
 c = Counter()
-f = open("tilt.txt", "w+")
 
 def isr(gpio):
     c.count += 1
@@ -23,12 +22,14 @@ try:
         if timer() > (c.start + 1):
             c.start = timer()
             print(c.count)
+            f = open("tilt.txt", "a+")
             if c.count >= 37:
                 print("Danger")
                 f.write("1\n")
             else:
                 print("No Danger Balle Balle")
                 f.write("0\n")
+            f.close()
             c.count = 0
         
     t = raw_input("Enter to stop")
