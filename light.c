@@ -14,7 +14,7 @@
 #include "libsoc_debug.h"
  
 #define GPIO_CS 18
-#define LIGHT_THRESHOLD 200
+#define LIGHT_THRESHOLD 120
  
 static uint8_t tx[3],rx[3];
  
