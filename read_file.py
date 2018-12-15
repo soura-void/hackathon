@@ -23,6 +23,15 @@ def read_tilt():
 
     return values[-1:]
 
+def read_light():
+    values = []
+    f = open(files[1], "r+").read().splitlines()
+    for lines in f:
+        values.append(int(lines.strip()))
+
+    return values[-1:]
+
+
 if __name__=='__main__':
     while True:
         h = read_heartrate()
