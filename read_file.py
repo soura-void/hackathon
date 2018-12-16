@@ -35,10 +35,10 @@ def read_light():
     return values[-1:][0]
 
 ## API to blink LED in case of danger 
-def led():
+def led_glow(x):
     a = mraa.Gpio(29)
     a.dir(mraa.DIR_OUT)
-    for i in range(10):
+    for i in range x*4:
         a.write(1)
         time.sleep(0.1)
         a.write(0)

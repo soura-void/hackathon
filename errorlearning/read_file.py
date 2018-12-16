@@ -36,8 +36,14 @@ def read_light():
 
     return values[-1:][0]
 
-def led_glow():
-    os.system("python led.py")
+def led_glow(x):
+    if x == 1: 
+        os.system("python led.py 1")
+    if x == 2: 
+        os.system("python led.py 2")
+    if x == 3: 
+        os.system("python led.py 3")
+
 
 if __name__=='__main__':
     while True:

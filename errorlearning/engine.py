@@ -121,35 +121,35 @@ def checkformishapfinal(x0,y0,z0,w0) :
     finalval = dangerlevel(x1, y1, z1, w1)
     return finalval
 
-def dangerlevel(x, y, z, w) : 
-    if z == 10 and w == 10 and y == 10:
+def dangerlevel(xx, yy, zz, ww) : 
+    if zz == 10 and ww == 10 and yy == 10:
         return 3
-    if x == 10 : 
+    if xx == 10 : 
         return 3
-    if z >= 8 and w >= 8 and y >= 8 :
+    if zz >= 8 and ww >= 8 and yy >= 8 :
         return 2
-    if x >= 7 :
+    if xx >= 7 :
         return 2
-    if z >= 6 and w >= 6 and y >= 6 :
+    if zz >= 6 and ww >= 6 and yy >= 6 :
         return 1
-    if x >= 5 :
+    if xx >= 5 :
         return 1
     return 0
  
     
 def raisealarm3() :
     sendemail("17.4405884,78.3786465")
-    read_file.led_glow()
+    read_file.led_glow(3)
 
 
 def raisealarm2() :
     sendemail("17.4405884,78.3786465")
-    read_file.led_glow()
+    read_file.led_glow(2)
 
 
 def raisealarm1() :
     sendemail("17.4405884,78.3786465")
-    read_file.led_glow()
+    read_file.led_glow(1)
 #integrate map, alarm, and buzzer here 
 
 
