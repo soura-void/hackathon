@@ -1,5 +1,6 @@
 import time
 import read_file
+import os
 from threading import Thread
 from emailAttachment import sendemail 
 from utils import clickpic
@@ -139,6 +140,7 @@ def dangerlevel(xx, yy, zz, ww) :
  
     
 def raisealarm3() :
+    playalarm().start()
     clickpicture().start()
     read_file.led_glow(3)
     sendemails().start()
@@ -146,6 +148,7 @@ def raisealarm3() :
 
 
 def raisealarm2() :
+    playalarm().start()
     clickpicture().start()
     read_file.led_glow(2)
     sendemails().start()
@@ -153,6 +156,7 @@ def raisealarm2() :
 
 
 def raisealarm1() :
+    playalarm().start()
     clickpicture().start()
     read_file.led_glow(1)
     sendemails().start()
@@ -167,6 +171,12 @@ class sendemails(Thread):
     def run(self):
         sendemail("17.4405884,78.3786465")
         
+class playalarm(Thread):
+    def run(self):
+        os.system("aplay alarm.wav")
+        time.sleep(5)
+        os.system("pkill aplay")
+
 #write the code for mishap detection here and send it outside
 
 
