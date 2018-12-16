@@ -4,6 +4,7 @@ import os
 from threading import Thread
 from emailAttachment import sendemail 
 from utils import clickpic
+from fetchdata import dataset
 
 imageval = 0
 tiltval = 0
@@ -100,7 +101,7 @@ class checkformishap(Thread):
         #raisealarm()
         while 1 :
             time.sleep(12.5)
-            cntx0 = sum(n == 0 for n in x) #x is image
+            cntx0 = sum(n == '0' for n in x) #x is image
             cnty0 = sum(n == 0 for n in y) #y is tilt
             cntz0 = sum(n == 0 for n in z) #z is ldr
             cntw0 = sum(n == 0 for n in w) #w is heartbeat
@@ -130,11 +131,11 @@ def dangerlevel(xx, yy, zz, ww) :
         return 3
     if zz >= 8 and ww >= 8 and yy >= 8 :
         return 2
-    if xx >= 7 :
+    if xx >= 8 :
         return 2
     if zz >= 6 and ww >= 6 and yy >= 6 :
         return 1
-    if xx >= 5 :
+    if xx >= 8 :
         return 1
     return 0
  
@@ -169,7 +170,7 @@ class clickpicture(Thread):
 
 class sendemails(Thread):
     def run(self):
-        sendemail("17.4405884,78.3786465")
+        sendemail("17.4405039,78.3779605")
         
 class playalarm(Thread):
     def run(self):
@@ -181,7 +182,7 @@ class playalarm(Thread):
 
 
 def getvalfromimagefile() :
-    return 0
+    return dataset()
 
 def getvalfromtiltsensor() :
     return read_file.read_tilt()
