@@ -104,10 +104,12 @@ class checkformishap(Thread):
             cntw0 = sum(n == 0 for n in w) #w is heartbeat
 
             val = checkformishapfinal(cntx0, cnty0, cntz0, cntw0)
-            if (val) :
-                raisealarm()
-        
-
+            if (val == 3) :
+                raisealarm3()
+            if (val == 2) :
+                raisealarm2()
+            if (val == 1) :
+                raisealarm1()        
 
 def checkformishapfinal(x0,y0,z0,w0) : 
     x1 = 10 - x0
@@ -116,13 +118,36 @@ def checkformishapfinal(x0,y0,z0,w0) :
     w1 = 10 - w0
 
     print(x1,y1,z1,w1)
-    if z1 > 7 and w1 > 7 and y1 > 7 :
+    finalval = dangerlevel(x1, y1, z1, w1)
+    return finalval
+
+def dangerlevel(x, y, z, w) : 
+    if z == 10 and w == 10 and y == 10:
+        return 3
+    if x == 10 : 
+        return 3
+    if z >= 8 and w >= 8 and y >= 8 :
+        return 2
+    if x >= 7 :
+        return 2
+    if z >= 6 and w >= 6 and y >= 6 :
         return 1
-    if x1 > 6 : #giving priority to image [separate to sensors module, this can be preventive]
+    if x >= 5 :
         return 1
     return 0
+ 
+    
+def raisealarm3() :
+    sendemail("17.4405884,78.3786465")
+    read_file.led_glow()
 
-def raisealarm() :
+
+def raisealarm2() :
+    sendemail("17.4405884,78.3786465")
+    read_file.led_glow()
+
+
+def raisealarm1() :
     sendemail("17.4405884,78.3786465")
     read_file.led_glow()
 #integrate map, alarm, and buzzer here 
