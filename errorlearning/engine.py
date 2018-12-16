@@ -2,6 +2,7 @@ import time
 import read_file
 from threading import Thread
 from emailAttachment import sendemail 
+from utils import clickpic
 
 imageval = 0
 tiltval = 0
@@ -138,18 +139,21 @@ def dangerlevel(xx, yy, zz, ww) :
  
     
 def raisealarm3() :
-    sendemail("17.4405884,78.3786465")
+    clickpic()
     read_file.led_glow(3)
+    sendemail("17.4405884,78.3786465")
 
 
 def raisealarm2() :
-    sendemail("17.4405884,78.3786465")
+    clickpic()
     read_file.led_glow(2)
+    sendemail("17.4405884,78.3786465")
 
 
 def raisealarm1() :
-    sendemail("17.4405884,78.3786465")
+    clickpic()
     read_file.led_glow(1)
+    sendemail("17.4405884,78.3786465")
 #integrate map, alarm, and buzzer here 
 
 

@@ -40,10 +40,10 @@ def reverseGeocode(latlng):
 				
 def sendemail(latlng):
 	fromaddr = "kavachhack@gmail.com"
-	toaddr = "bankita@qti.qualcomm.com, svishnoi@qti.qualcomm.com, mohapatr@qti.qualcomm.com, anurdas@qti.qualcomm.com"
+	toaddr = "ramamurt@qti.qualcomm.com, bankita@qti.qualcomm.com, ankita.bajaj2911@gmail.com, svishnoi@qti.qualcomm.com, mohapatr@qti.qualcomm.com, anurag4446@gmail.com"
 
 # list of email_id to send the mail 
-	li = ["bankita@qti.qualcomm.com", "svishnoi@qti.qualcomm.com", "mohapatr@qti.qualcomm.com", "anurdas@qti.qualcomm.com"]
+        li = ["ramamurt@qti.qualcomm.com", "bankita@qti.qualcomm.com", "ankita.bajaj2911@gmail.com", "svishnoi@qti.qualcomm.com", "mohapatr@qti.qualcomm.com", "anurag4446@gmail.com"]
 
 # instance of MIMEMultipart 
 	msg = MIMEMultipart() 
@@ -58,8 +58,9 @@ def sendemail(latlng):
 	msg['Subject'] = "SOS Signal"
 
 # string to store the body of the mail 
-	location = reverseGeocode(latlng)
-	body = "Location: " + location
+	#location = reverseGeocode(latlng)
+	#body = "Location: " + location
+	body = "Location: "
 #N_image = sys.argv[2]
 
 # attach the body with the msg instance 
@@ -99,4 +100,4 @@ def sendemail(latlng):
 # terminating the session 
 	s.quit() 
 
-#print('formatted address:', sendemail(sys.argv[1]))
+print('formatted address:', sendemail(sys.argv[1]))
