@@ -139,24 +139,34 @@ def dangerlevel(xx, yy, zz, ww) :
  
     
 def raisealarm3() :
-    clickpic()
+    clickpicture().start()
     read_file.led_glow(3)
-    sendemail("17.4405884,78.3786465")
+    sendemails().start()
+    #sendemail("17.4405884,78.3786465")
 
 
 def raisealarm2() :
-    clickpic()
+    clickpicture().start()
     read_file.led_glow(2)
-    sendemail("17.4405884,78.3786465")
+    sendemails().start()
+    #sendemail("17.4405884,78.3786465")
 
 
 def raisealarm1() :
-    clickpic()
+    clickpicture().start()
     read_file.led_glow(1)
-    sendemail("17.4405884,78.3786465")
+    sendemails().start()
+    #sendemail("17.4405884,78.3786465")
 #integrate map, alarm, and buzzer here 
 
+class clickpicture(Thread):
+    def run(self):
+        clickpic()
 
+class sendemails(Thread):
+    def run(self):
+        sendemail("17.4405884,78.3786465")
+        
 #write the code for mishap detection here and send it outside
 
 
